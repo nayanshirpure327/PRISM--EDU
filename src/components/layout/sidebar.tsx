@@ -69,7 +69,7 @@ export function Sidebar({ role, userName, userEmail }: SidebarProps) {
         { label: 'Add Student (Single)', href: '/faculty/students/add', icon: UserPlus },
         { label: 'Import Students (Excel)', href: '/faculty/students/import', icon: FileSpreadsheet },
         { label: 'Import Attendance', href: '/faculty/students/import-attendance', icon: CalendarCheck2 },
-        { label: 'Upload Resources', href: '/faculty/resources', icon: BookOpen },
+        { label: 'Resource Catalog', href: '/faculty/resources', icon: FolderKanban },
         { label: 'Interventions Log', href: '/faculty/interventions', icon: HeartHandshake },
       ];
     }

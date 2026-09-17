@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select } from '@/components/ui/select';
 import { Dialog } from '@/components/ui/dialog';
-import { Plus, GraduationCap, UserCheck, UserX, Mail, Phone, BookOpen } from 'lucide-react';
+import { Plus, GraduationCap, UserCheck, UserX, Mail, Phone, BookOpen, Trash2 } from 'lucide-react';
 
 export default function AdminFacultyPage() {
   const [facultyList, setFacultyList] = React.useState<any[]>([]);
@@ -184,20 +184,15 @@ export default function AdminFacultyPage() {
                   <TableCell className="text-right">
                     <Button
                       size="sm"
-                      variant={f.status === 'active' ? 'outline' : 'default'}
+                      variant="ghost"
                       onClick={() => toggleStatus(f.id)}
-                      className="h-8 px-2 text-xs"
+                      className="h-8 px-2 text-xs hover:bg-red-50 hover:text-red-600 transition-colors"
+                      title={f.status === 'active' ? "Remove Faculty" : "Restore Faculty"}
                     >
                       {f.status === 'active' ? (
-                        <>
-                          <UserX className="h-3.5 w-3.5 text-red-600 mr-1" />
-                          Deactivate
-                        </>
+                        <Trash2 className="h-3.5 w-3.5 text-red-500" />
                       ) : (
-                        <>
-                          <UserCheck className="h-3.5 w-3.5 text-emerald-600 mr-1" />
-                          Activate
-                        </>
+                        <UserCheck className="h-3.5 w-3.5 text-emerald-600" />
                       )}
                     </Button>
                   </TableCell>

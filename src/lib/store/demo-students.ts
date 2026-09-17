@@ -34,6 +34,11 @@ export interface DemoStudent {
   previous_gpa?: number;
   previous_backlogs?: number;
   attendance_percentage?: number;
+  attendance_rate?: number;
+  academic_cgpa?: number;
+  academic_backlogs?: number;
+  faculty_mentor_name?: string;
+  admission?: { previous_gpa?: number; financial_assistance?: string };
   family_income?: number;
   financial_assistance?: string;
   guardian_name?: string;

@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Select } from '@/components/ui/select';
 import { InsightBadge } from '@/components/ui/insight-badge';
 import { Dialog } from '@/components/ui/dialog';
-import { Search, UserCheck, UserX, Eye, Edit, AlertTriangle } from 'lucide-react';
+import { Search, UserCheck, UserX, Eye, Edit, AlertTriangle, UserPlus, FileSpreadsheet, Trash2 } from 'lucide-react';
 import type { InsightLevel } from '@/lib/types';
 
 export default function AdminStudentsPage() {
@@ -68,11 +68,27 @@ export default function AdminStudentsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Institutional Student Directory</h2>
-        <p className="text-sm text-slate-500">
-          Detailed student records, attendance %, academic performance, family income tiers, and risk indicators.
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Institutional Student Directory</h2>
+          <p className="text-sm text-slate-500">
+            Detailed student records, attendance %, academic performance, family income tiers, and risk indicators.
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Link href="/admin/students/add">
+            <Button className="gap-1.5 text-xs">
+              <UserPlus className="h-4 w-4" />
+              <span>Add Student</span>
+            </Button>
+          </Link>
+          <Link href="/admin/students/import">
+            <Button variant="outline" className="gap-1.5 text-xs border-slate-300">
+              <FileSpreadsheet className="h-4 w-4" />
+              <span>Import Excel</span>
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {/* Filter Toolbar */}
@@ -231,12 +247,13 @@ export default function AdminStudentsPage() {
 
                         <Button
                           size="sm"
-                          variant={s.status === 'active' ? 'ghost' : 'default'}
+                          variant="ghost"
                           onClick={() => toggleStatus(s)}
-                          className="h-8 px-2 text-xs"
+                          className="h-8 px-2 text-xs hover:bg-red-50 hover:text-red-600 transition-colors"
+                          title={s.status === 'active' ? "Remove Student" : "Restore Student"}
                         >
                           {s.status === 'active' ? (
-                            <UserX className="h-3.5 w-3.5 text-red-600" />
+                            <Trash2 className="h-3.5 w-3.5 text-red-500" />
                           ) : (
                             <UserCheck className="h-3.5 w-3.5 text-emerald-600" />
                           )}

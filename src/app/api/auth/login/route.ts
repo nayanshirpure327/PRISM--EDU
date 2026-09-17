@@ -8,6 +8,7 @@ import type { SessionUser, UserRole } from '@/lib/types';
 const LoginSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(1, 'Password is required'),
+  role: z.enum(['admin', 'faculty', 'student']).optional(),
 });
 
 // Built-in demo accounts for instant review & hackathon evaluation
@@ -44,7 +45,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { email, password } = parsed.data;
+    const { email, password, role: requestedRole } = parsed.data;
     const normalizedEmail = email.toLowerCase().trim();
 
     let userSession: SessionUser | null = null;
@@ -212,6 +213,32 @@ export async function POST(req: Request) {
       return NextResponse.json(
         { error: 'Invalid email or password. Please verify your institutional credentials.' },
         { status: 401 }
+      );
+    }
+
+    // Explicit Role Authorization Check: Faculty accounts cannot access Admin portal, Admin accounts cannot access Faculty/Student portal, etc.
+    if (requestedRole && userSession.role !== requestedRole) {
+      if (requestedRole === 'admin' && userSession.role === 'faculty') {
+        return NextResponse.json(
+          { error: 'Access Denied: Faculty accounts do not have authority to log in to the Admin Dashboard.' },
+          { status: 403 }
+        );
+      }
+      if (requestedRole === 'admin' && userSession.role === 'student') {
+        return NextResponse.json(
+          { error: 'Access Denied: Student accounts do not have authority to log in to the Admin Dashboard.' },
+          { status: 403 }
+        );
+      }
+      if (requestedRole === 'faculty' && userSession.role === 'admin') {
+        return NextResponse.json(
+          { error: 'Access Denied: Admin accounts do not have authority to log in to the Faculty Mentorship Portal.' },
+          { status: 403 }
+        );
+      }
+      return NextResponse.json(
+        { error: `Access Denied: Your account is registered as ${userSession.role.toUpperCase()} and does not have authority to access the ${requestedRole.toUpperCase()} portal.` },
+        { status: 403 }
       );
     }
 

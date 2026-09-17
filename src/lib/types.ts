@@ -373,3 +373,147 @@ export interface CreatedStudent {
   email: string;
   tempPassword: string;
 }
+
+// ─── Student Activity Telemetry ──────────────────────────────────────────────
+export interface StudentActivityEvent {
+  id?: string;
+  studentId: string;
+  eventType: 'login' | 'logout' | 'dashboard_view' | 'resource_view' | 'resource_download' | 'quiz_attempt' | 'assignment_submit' | 'support_interaction' | 'career_interaction';
+  timestamp: string;
+  sessionId?: string;
+  durationSeconds?: number;
+  resourceId?: string;
+  courseId?: string;
+  metadata?: Record<string, any>;
+  createdAt?: string;
+}
+
+export interface ActivitySummary {
+  studentId: string;
+  loginFrequency7d: number;
+  loginFrequency30d: number;
+  activeDays7d: number;
+  activeDays30d: number;
+  averageSessionDuration: number;
+  resourceAccessFrequency: number;
+  assignmentActivity: number;
+  quizActivity: number;
+  engagementScore: number;
+  engagementChange: number;
+}
+
+// ─── Feature Snapshot ────────────────────────────────────────────────────────
+export interface FeatureSnapshot {
+  id?: string;
+  studentId: string;
+  observationDate: string;
+  // Academic
+  currentGpa: number;
+  previousGpa: number;
+  gpaChange: number;
+  marksAverage: number;
+  failedSubjectCount: number;
+  backlogCount: number;
+  performanceTrend: number;
+  // Attendance
+  attendancePercentage: number;
+  attendanceChange: number;
+  absenceFrequency: number;
+  consecutiveAbsences: number;
+  monthlyAttendance: number;
+  attendanceTrend: number;
+  // Engagement
+  loginFrequency: number;
+  activeDays: number;
+  averageSessionDuration: number;
+  resourceAccessFrequency: number;
+  assignmentSubmissionRate: number;
+  quizActivity: number;
+  engagementScore: number;
+  engagementChange: number;
+  // Financial & Support Indicators
+  financialStatus?: string;
+  scholarshipStatus?: string;
+  feeAssistanceStatus?: string;
+  financialAidStatus?: string;
+  dataCompletenessScore: number;
+  createdAt: string;
+}
+
+// ─── Predictive Analytics & Risk Category ────────────────────────────────────
+export type RiskCategory = 'LOW' | 'MODERATE' | 'HIGH' | 'CRITICAL';
+
+export interface RiskPrediction {
+  id: string;
+  studentId: string;
+  riskProbability: number; // 0 to 1 or 0 to 100
+  riskCategory: RiskCategory;
+  modelVersion: string;
+  predictionDate: string;
+  previousRiskProbability?: number;
+  riskChangeDelta?: number; // e.g. +29 percentage points
+  isModelReady: boolean;
+  modelStatusMessage?: string;
+  riskFactors: RiskFactor[];
+  ruleWarnings: RuleWarning[];
+}
+
+export interface RiskFactor {
+  id?: string;
+  predictionId?: string;
+  featureName: string;
+  featureValue: string | number;
+  importanceScore: number; // 0 to 100
+  direction: 'increase_risk' | 'decrease_risk';
+  description: string;
+}
+
+export interface RuleWarning {
+  id: string;
+  studentId: string;
+  ruleType: 'attendance' | 'academic' | 'engagement' | 'gpa' | 'backlog';
+  severity: 'warning' | 'high' | 'critical';
+  message: string;
+  triggeredAt: string;
+}
+
+// ─── Machine Learning Model & Health Metrics ─────────────────────────────────
+export interface ModelMetrics {
+  modelName: string;
+  modelVersion: string;
+  algorithm: string;
+  lastTrained: string;
+  lastEvaluated: string;
+  precision: number;
+  recall: number;
+  f1Score: number;
+  rocAuc: number;
+  prAuc: number;
+  calibrationScore: number;
+  dataDriftScore: number;
+  isModelReady: boolean;
+  statusMessage: string;
+}
+
+export interface DataQualityReport {
+  totalStudentRecords: number;
+  completeRecords: number;
+  missingAttendance: number;
+  missingAcademicData: number;
+  missingEngagementData: number;
+  duplicateRecords: number;
+  invalidRecords: number;
+  failedImports: number;
+  overallCompletenessPercentage: number;
+}
+
+export interface ResourceRecommendation {
+  resourceId: string;
+  title: string;
+  category: 'learning' | 'financial' | 'support' | 'career';
+  matchedRiskFactor: string;
+  reason: string;
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  url?: string;
+}
+

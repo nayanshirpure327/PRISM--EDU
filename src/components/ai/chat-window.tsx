@@ -115,10 +115,7 @@ export function ChatWindow({
             <p className="text-xs text-slate-500">{subtitle}</p>
           </div>
         </div>
-        <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-medium text-slate-600">
-          <Sparkles className="h-3 w-3 text-indigo-600" />
-          <span>RAG Academic Engine</span>
-        </div>
+
       </div>
 
       {/* Privacy Notice Banner */}

@@ -320,9 +320,9 @@ export default function FacultyDashboardPage() {
                 </div>
 
                 <div className="flex items-center gap-2 shrink-0">
-                  <Link href={`/faculty/students/${s.id}/edit`}>
-                    <Button variant="outline" size="sm" className="text-xs">
-                      Edit
+                  <Link href={`/faculty/students/${s.id}/analysis`}>
+                    <Button variant="outline" size="sm" className="text-xs text-indigo-700 bg-indigo-50/50 border-indigo-200">
+                      View Analysis
                     </Button>
                   </Link>
                   <Link href={`/faculty/students/${s.id}`}>
