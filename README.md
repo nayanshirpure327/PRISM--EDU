@@ -1,191 +1,455 @@
-# PRISM EDU — Student Dropout Prediction & Intervention Platform
+# PRISM EDU 
 
-PRISM EDU is an institutional, production-quality **Student Dropout Prediction & Intervention Platform** built for higher educational institutions. It identifies students who may require targeted support and reduces student dropout rates through predictive analytics, longitudinal trend monitoring, and faculty-led interventions.
+> **Smart Student Support & Dropout Prediction Platform**  
+> **Hack2Ignite 2026 — Problem Statement ED-05**  
+> **Team Pheonix | Trinity College of Engineering and Research, Pune**
+
+##  Overview
+
+**PRISM EDU** is a web-based student support and predictive analytics platform designed to help educational institutions identify students who may need support at an early stage.
+
+The platform combines student academic and engagement data with machine learning insights, faculty intervention tools, AI-powered learning support, counselling support, scholarship information, and career opportunities.
+
+### Core Objective
+
+**Student Data → Predictive Analysis → Early Identification → Faculty Action → Student Support → Better Student Outcomes**
 
 ---
 
-## 🏛️ Platform Roles & Credentials
+##  Problem Statement
 
-The platform enforces strict Role-Based Access Control (RBAC) across three primary user roles:
+Student dropout can be influenced by multiple factors such as academic performance, attendance, engagement, financial difficulties, and lack of timely support.
 
-| Role | Demo Email | Demo Password | Purpose & Permissions |
-|---|---|---|---|
-| **Admin** | `admin@prismedu.com` | `password123` | Institutional management: faculty management, student directory, catalog resource management, institutional KPI analytics. |
-| **Faculty** | `faculty1@prismedu.com` | `password123` | Operational system user: cohort monitoring, manual/Excel student registration, multidimensional trend analysis, targeted interventions. |
-| **Student** | `student2@prismedu.com` (Priya Patel) | `password123` | Learning environment, RAG AI Learning Agent, academic progress, attendance tracking, scholarships, wellness counsellors, career skills. |
+Traditional systems often store student information without converting it into actionable insights.
+
+PRISM EDU addresses this gap by bringing student data, predictive analytics, faculty monitoring, and support services together in one platform.
 
 ---
 
-## 🔄 Core Feedback Loop
+##  Proposed Solution
 
+PRISM EDU provides separate experiences for students, faculty, and administrators.
+
+The system can use existing admission and academic information, continuously collect relevant student activity, and generate predictive insights that help faculty identify students who may require timely intervention.
+
+Students can also access learning resources, AI assistance, counselling support, scholarships, and career opportunities.
+
+---
+
+##  Key Features
+
+###  Predictive Analytics
+- Uses student data for predictive assessment.
+- Helps identify early dropout-risk indicators.
+- Provides actionable insights for faculty.
+- Supports continuous monitoring and intervention.
+
+###  Faculty Dashboard
+- Manage and monitor students.
+- View academic performance and attendance.
+- Track student engagement.
+- Review predictive insights.
+- Identify areas where students need support.
+- Record and track interventions.
+
+###  Student Portal
+- Access academic information.
+- View learning resources.
+- Track progress.
+- Use AI-powered academic assistance.
+- Access counselling and support options.
+- Explore scholarships and financial support.
+- Discover career opportunities.
+
+###  AI Learning Agent
+Provides students with AI-powered academic assistance for:
+- Subject doubts
+- Concept explanations
+- Examples
+- Learning guidance
+- Practice and revision
+
+###  AI Counselling & Support
+Provides basic personal and emotional support and guides students toward appropriate resources.
+
+The platform can also provide college counsellor contact information for students who want human support.
+
+###  Scholarship Support
+Students can explore:
+- Scholarships
+- Eligibility information
+- Benefits
+- Application requirements
+- Deadlines
+- Educational financial support
+
+###  Career Opportunities
+Provides access to relevant:
+- Jobs
+- Internships
+- Certifications
+- Skill-development opportunities
+
+###  Learning Resources
+Faculty can provide:
+- Notes
+- PDFs
+- Videos
+- Assignments
+- Quizzes
+- Practice material
+
+---
+
+##  How PRISM EDU Works
+
+```text
+Existing Student Data
+        ↓
+Initial Predictive Assessment
+        ↓
+Student Academic & Engagement Activity
+        ↓
+Continuous Data Collection
+        ↓
+AI + ML Analysis
+        ↓
+Faculty Insights
+        ↓
+Timely Intervention
+        ↓
+Student Support
+        ↓
+Progress & Outcomes
+        ↓
+Updated Analytics
 ```
-Admission Data (Academic, Financial, Family)
-      ↓
-Initial Background Predictive Assessment
-      ↓
-Student Uses Platform (Notes, Quizzes, AI Doubts, Portal Sessions)
-      ↓
-Centralized Activity Telemetry System
-      ↓
-Analytics Engine (Feature Re-Aggregation)
-      ↓
-Faculty Actionable Insights & Contributing Factors
-      ↓
-Targeted Faculty Intervention (Academic, Attendance, Financial, Support, Career)
-      ↓
-Student Receives Support & Outcome Recorded
-      ↓
-Stored Historical Dataset Improves Future Predictive Models
+
+### Intervention Loop
+
+```text
+Identify → Understand → Intervene → Monitor → Measure → Improve
 ```
 
 ---
 
-## 🛠️ Technology Stack
+##  System Architecture
 
-- **Frontend:** Next.js 14 (App Router), React 18, TypeScript, Tailwind CSS, Lucide Icons, Recharts.
-- **Backend API:** Next.js Server Endpoints (REST-style), JOSE (JWT sessions), BcryptJS.
-- **Machine Learning & AI Service:** Python FastAPI, scikit-learn, pandas, numpy, OpenAI GPT-4o-mini (with built-in offline curriculum fallbacks).
-- **Database & Storage:** PostgreSQL / Supabase, pgvector extension for semantic document embeddings.
-- **Data Ingestion & Import:** XLSX / CSV parser with automated column and row validation.
+```text
+                    ┌─────────────────────┐
+                    │   Student / Faculty │
+                    │      / Admin        │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │     Next.js Web     │
+                    │    Application      │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   Backend / APIs    │
+                    │      FastAPI        │
+                    └──────┬───────┬──────┘
+                           │       │
+              ┌────────────┘       └────────────┐
+              ▼                                 ▼
+     ┌─────────────────┐              ┌─────────────────┐
+     │ Supabase /      │              │ Python ML       │
+     │ PostgreSQL      │              │ Service         │
+     └─────────────────┘              └────────┬────────┘
+                                               │
+                                               ▼
+                                    ┌─────────────────────┐
+                                    │ Predictive Insights │
+                                    └──────────┬──────────┘
+                                               │
+                                               ▼
+                                    ┌─────────────────────┐
+                                    │ Faculty Intervention│
+                                    └─────────────────────┘
+```
 
 ---
 
-## 📁 Project Architecture
+##  Technology Stack
 
-```
-PRISM-EDU/
-├── src/
-│   ├── app/
-│   │   ├── (auth)/login/             # Institutional login with demo role switcher
-│   │   ├── (admin)/admin/            # Admin Module
-│   │   │   ├── dashboard/            # Institutional KPI charts & intervention breakdown
-│   │   │   ├── students/             # Student management, search, filters & status toggles
-│   │   │   ├── faculty/              # Faculty account provisioning & status
-│   │   │   └── resources/            # Learning, Financial, Support & Career catalogs
-│   │   ├── (faculty)/faculty/        # Faculty Module
-│   │   │   ├── dashboard/            # Assigned students, attention indicators, recent changes
-│   │   │   ├── students/             # Cohort list & search
-│   │   │   │   ├── [id]/             # Actionable insights, 5 longitudinal trends & interventions
-│   │   │   │   ├── add/              # Method 1: Manual admission entry & predictive trigger
-│   │   │   │   └── import/           # Method 2: Multi-step Excel/CSV import wizard
-│   │   │   └── interventions/        # Intervention lifecycle management & outcome logging
-│   │   ├── (student)/student/        # Student Module (Section 15 layout)
-│   │   │   ├── dashboard/            # Personalized home (no dropout probability displayed)
-│   │   │   ├── learning/             # Notes, PDFs, video lectures, assignments & quizzes
-│   │   │   ├── ai-learning/          # RAG Academic Doubt-Solving Agent
-│   │   │   ├── progress/             # Cumulative GPA, degree credits & semester transcripts
-│   │   │   ├── attendance/           # 4-week trajectory, subject breakdown & exam warnings
-│   │   │   ├── financial/            # Scholarships & educational loans with eligibility tags
-│   │   │   ├── support/              # Approved counsellor directory & AI wellness companion
-│   │   │   ├── career/               # Jobs, internships, certifications & skill pathways
-│   │   │   └── notifications/        # In-app academic, deadline & mentorship notifications
-│   │   └── api/                      # Protected REST APIs for all operations
-│   ├── components/
-│   │   ├── ui/                       # Base components (Button, Input, Card, Table, Dialog, etc.)
-│   │   ├── layout/                   # Sidebar, Navbar, DashboardLayout
-│   │   ├── charts/                   # Recharts trend line visualizations
-│   │   ├── learning/                 # Interactive QuizRunner with automated scoring
-│   │   ├── ai/                       # Responsive ChatWindow with suggested prompts
-│   │   ├── student/                  # StudentCard with semantic status badges
-│   │   └── interventions/            # InterventionCard & InterventionForm modal
-│   ├── lib/
-│   │   ├── auth/                     # Password hashing, JWT sessions, RBAC guards
-│   │   ├── services/                 # ImportService, StudentService, ActivityService, AnalyticsService
-│   │   └── supabase/                 # Server and browser Supabase clients
-│   └── types/                        # Strongly-typed TypeScript interfaces matching DB schema
-├── ml-service/                       # Python FastAPI Machine Learning Microservice
-│   ├── analytics/engine.py           # Feature aggregation & insight level computation
-│   ├── prediction/                   # Model trainer, feature encoder & risk predictor
-│   ├── ai/                           # RAG learning agent & supportive companion
-│   ├── routers/                      # /predict and /ai endpoints
-│   ├── tests/                        # Python test suite
-│   └── main.py                       # FastAPI application entrypoint
-├── supabase/
-│   ├── migrations/001_initial_schema.sql  # 24 core tables, enums, indexes, triggers
-│   ├── migrations/002_row_level_security.sql # Row-Level Security policies
-│   └── seed.sql                      # Complete seed dataset for demo scenarios
-├── __tests__/                        # Automated TypeScript test suite (20 tests passing)
-│   ├── auth/login.test.ts
-│   ├── import/validation.test.ts
-│   ├── analytics/features.test.ts
-│   └── interventions/intervention.test.ts
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js 14 |
+| UI | React 18, TypeScript, Tailwind CSS |
+| Backend | Python FastAPI |
+| Database | Supabase / PostgreSQL |
+| Vector Search | pgvector |
+| Machine Learning | Python, scikit-learn, pandas |
+| AI | OpenAI GPT-4o-mini |
+| Deployment | Vercel + backend services |
+
+---
+
+##  Project Structure
+
+```text
+PRISM--EDU/
+│
+├── app/                 # Next.js application
+├── components/          # Reusable UI components
+├── lib/                 # Application utilities and services
+├── public/              # Static assets
+├── ml_service/          # Python ML / FastAPI service
+├── tests/               # Project tests
+├── supabase/            # Supabase-related configuration
+├── package.json
+├── next.config.*
+├── tailwind.config.*
 └── README.md
 ```
 
 ---
 
-## 🚀 Quick Start Guide
+##  Getting Started
 
-### 1. Run the Web Application
+### Prerequisites
 
-The platform is installed and ready to run using **Bun**:
+- Node.js
+- npm
+- Python 3.x
+- Git
+- Supabase project
+- Required API credentials
 
-```bash
-# Run automated test suite
-bun test
-
-# Start the Next.js development server
-bun run dev
-```
-
-The application will be accessible at: `http://localhost:3000`
-
-### 2. Run the ML Service (Optional)
+### 1. Clone the Repository
 
 ```bash
-cd ml-service
-python -m pip install -r requirements.txt
-python -m uvicorn main:app --reload --port 8000
+git clone https://github.com/nayanshirpure327/PRISM--EDU.git
+cd PRISM--EDU
 ```
 
-*Note: The platform features graceful built-in fallbacks for predictions, analytics, and curriculum doubt-solving so the entire demo flow works seamlessly out-of-the-box even before starting the Python service.*
+### 2. Install Frontend Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env.local` file and add the environment variables required by the project.
+
+Example:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+OPENAI_API_KEY=your_openai_api_key
+```
+
+> Never commit real API keys or passwords to GitHub.
+
+### 4. Start the Development Server
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+### 5. Run the ML Service
+
+Navigate to the ML service directory and install its Python dependencies according to the project's requirements.
+
+```bash
+cd ml_service
+pip install -r requirements.txt
+```
+
+Start the FastAPI service using the command specified by the project configuration.
 
 ---
 
-## 🎬 Expected End-to-End Demo Flow
+##  Data Privacy & Security
 
-You can execute the complete end-to-end demonstration flow specified in Section 35:
+PRISM EDU handles sensitive student-related information, so privacy and controlled access are important.
 
-1. **ADMIN LOGIN:**
-   - Log in at `/login` with `admin@prismedu.com` / `password123`.
-   - Review institutional metrics: Total Students, Faculty, Attention Indicators, and Intervention Summary.
-   - Navigate to **Faculty Management** (`/admin/faculty`) and create a new faculty mentor.
-   - Navigate to **Resource Catalog** (`/admin/resources`) and inspect learning, financial, counsellor, and career items.
+Key considerations include:
 
-2. **FACULTY LOGIN:**
-   - Sign in as `faculty1@prismedu.com` / `password123`.
-   - Review the **Faculty Dashboard**: see assigned students, students requiring attention, recent telemetry changes, and pending interventions.
-   - Click **Import Excel** (`/faculty/students/import`), download the sample template, upload an Excel file, review column/row validation and duplicate detection, then confirm the batch import.
-   - Click **Register Student** (`/faculty/students/add`) to manually add a student and trigger the initial predictive assessment.
+- Role-based access
+- Secure authentication
+- Protected student information
+- Input validation
+- Secure API communication
+- Controlled access to predictive insights
+- Protection of API credentials
 
-3. **STUDENT LOGIN:**
-   - Sign in as `student2@prismedu.com` (Priya Patel) / `password123`.
-   - Observe the **Personalized Home**: course progress, attendance rate, recommended learning, scholarships, and opportunities (with **no dropout probability** displayed).
-   - Open **Learning Environment** (`/student/learning`): open notes, mark completed, submit assignment text, and take the interactive assessment quiz.
-   - Open **AI Learning Agent** (`/student/ai-learning`): ask academic questions (e.g. *"Explain 3NF vs BCNF"* or *"What is Dijkstra's algorithm?"*).
-   - Visit **Financial Support** (`/student/financial`) to see matching scholarships tagged with *Potentially Eligible*.
-   - Visit **Personal Support** (`/student/support`) to review campus counsellors and chat with the AI support companion.
-   - Visit **Career Opportunities** (`/student/career`) to explore full-time jobs, internships, and certifications.
-
-4. **FACULTY REVIEW & INTERVENTION:**
-   - Log back in as `faculty1@prismedu.com`.
-   - Open **Priya Patel** (`/faculty/students/s2222222-2222-2222-2222-222222222222`).
-   - View updated actionable status indicators:
-     ```
-     Academic:        Attention Required
-     Attendance:      Declining
-     Financial:       Support Available
-     Career:          Active
-     ```
-   - Inspect the contributing factors: *Attendance decreased from 82% to 69%*, *Quiz performance decreased*, *Learning portal activity reduced*.
-   - Click **Create Targeted Intervention**, assign an Academic tutoring session, and submit.
-   - Log into student portal: observe the new in-app notification for the scheduled intervention.
-   - Log back into faculty portal: record the intervention outcome and mark as completed.
+Predictive analytics should be treated as a **support signal**, not a guaranteed prediction of a student's future.
 
 ---
 
-## 🔒 Security & Privacy Guarantees
+##  Predictive Analytics Approach
 
-- **Student Privacy:** Students are never shown distressing raw predictions (e.g. *"You have an 80% chance of dropping out"*). They only see constructive learning goals, attendance rates, and support opportunities.
-- **Counselling Confidentiality:** AI support companion interactions and private counselling sessions are never exposed to faculty dashboards.
-- **RBAC Enforcement:** Next.js middleware and server-side route guards strictly isolate Admin, Faculty, and Student workspaces. Students can only ever access their own data.
+PRISM EDU uses machine learning to analyze relevant student information and identify patterns associated with dropout risk.
+
+Potential data categories include:
+
+- Admission information
+- Academic performance
+- Attendance
+- Assignment and quiz performance
+- Learning activity
+- Engagement indicators
+- Other authorized institutional data
+
+The goal is to help faculty **identify students who may need attention early**, so appropriate support can be provided.
+
+---
+
+##  Model Improvement
+
+```text
+Historical Student Data
+        ↓
+Data Preparation
+        ↓
+Model Training
+        ↓
+Model Evaluation
+        ↓
+Deployment
+        ↓
+Prediction
+        ↓
+Faculty Intervention
+        ↓
+Validated Student Outcome
+        ↓
+Future Model Improvement
+```
+
+Model retraining should use validated historical outcomes rather than retraining blindly after every individual student activity.
+
+---
+
+##  User Roles
+
+### Student
+- Access learning resources
+- Ask academic questions
+- Receive basic support
+- Find scholarships
+- Explore career opportunities
+- Monitor academic progress
+
+### Faculty
+- Manage student information
+- Monitor academic progress
+- Track attendance and engagement
+- Review predictive insights
+- Identify areas requiring attention
+- Take and record interventions
+
+### Admin
+- Platform management
+- Student/faculty management
+- Institutional data management
+- System-level configuration
+
+---
+
+##  Expected Impact
+
+### Students
+-  Better learning support
+-  Accessible counselling support
+-  Scholarship awareness
+-  Career opportunities
+
+### Faculty
+-  Better student monitoring
+-  Early identification of students needing support
+-  Data-driven insights
+-  Timely intervention
+
+### Institution
+-  Early identification
+-  Better student support
+-  Supports dropout reduction
+-  Data-driven student retention efforts
+
+---
+
+##  Demo
+
+**Live Prototype:**  
+https://prism-edu.vercel.app/
+
+**GitHub Repository:**  
+https://github.com/nayanshirpure327/PRISM--EDU
+
+---
+
+##  Testing
+
+The repository includes project tests for validating application functionality.
+
+Run the available test commands defined in `package.json` and the relevant service configuration.
+
+Example:
+
+```bash
+npm test
+```
+
+---
+
+##  Research Areas
+
+- Student Dropout Prediction using Machine Learning
+- Educational Data Mining
+- Student Attendance and Engagement Analytics
+- Predictive Analytics in Education
+- AI Chatbots in Education
+- Student Counselling and Support Systems
+
+### Selected References
+
+1. Predicting Student Dropouts with Machine Learning: An Empirical Study in Finnish Higher Education  
+   https://doi.org/10.1016/j.techsoc.2024.102474
+
+2. A Study on Dropout Prediction for University Students Using Machine Learning  
+   https://doi.org/10.3390/app132112004
+
+3. Student Dropout Prediction  
+   https://pmc.ncbi.nlm.nih.gov/articles/PMC7334184/
+
+4. Predicting Student Dropout: A Machine Learning Approach  
+   https://doi.org/10.1080/21568235.2020.1718520
+
+5. Role of AI Chatbots in Education: Systematic Literature Review  
+   https://doi.org/10.1186/s41239-023-00426-1
+
+---
+
+##  Team Pheonix
+
+**Hack2Ignite 2026 — Problem Statement ED-05**
+
+**Trinity College of Engineering and Research, Pune**
+
+- Omkar Potare
+- Aniket Vishwakarma
+- Yugal Padole
+- Nayan Shirpure
+
+---
+
+##  Vision
+
+> **Identify Early • Support Better • Reduce Dropout**
+
+PRISM EDU aims to help institutions move from reactive student support to **early, data-driven intervention**.
+
+---
+
+##  License
+
+This project was developed as a hackathon prototype for **Hack2Ignite 2026**.
