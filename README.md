@@ -15,7 +15,19 @@ The platform combines student academic and engagement data with machine learning
 **Student Data → Predictive Analysis → Early Identification → Faculty Action → Student Support → Better Student Outcomes**
 
 ---
+###Login credentials##
 
+Admin:
+id : admin@prismedu.com
+password : password@123
+
+Faculty:
+id: faculty1@prismedu.com
+passs : password@123
+
+Student :
+id : aryan.verma@kjei.edu.in
+password : Aryan@0510
 ##  Problem Statement
 
 Student dropout can be influenced by multiple factors such as academic performance, attendance, engagement, financial difficulties, and lack of timely support.
